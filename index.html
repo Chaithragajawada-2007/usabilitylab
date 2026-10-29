@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UsabilityLab | Testing & Analysis</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Usability<span>Lab</span></div>
+    <span class="tag">UX RESEARCH PLATFORM</span>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <p class="muted">WORKSPACE</p>
+      <button class="nav active" data-page="dashboard">⌂ Dashboard</button>
+      <button class="nav" data-page="plans">▤ Test Plans</button>
+      <button class="nav" data-page="sessions">◉ Testing Sessions</button>
+      <button class="nav" data-page="observations">☷ Observations</button>
+      <button class="nav" data-page="analysis">▥ Analysis & Reports</button>
+      <div class="side-note">
+        <strong>Research tip</strong>
+        <p>Observe what users do, not just what they say.</p>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section id="dashboard" class="page">
+        <p class="eyebrow">OVERVIEW</p>
+        <h1>Usability Dashboard</h1>
+        <p class="muted">Plan tests, understand users, and improve digital experiences.</p>
+
+        <div class="metrics">
+          <article class="metric"><span>Test plans</span><strong id="planCount">0</strong></article>
+          <article class="metric"><span>Participants</span><strong id="participantCount">0</strong></article>
+          <article class="metric"><span>Tasks attempted</span><strong id="taskCount">0</strong></article>
+          <article class="metric"><span>Task success rate</span><strong id="successRate">0%</strong></article>
+        </div>
+
+        <div class="grid">
+          <article class="panel">
+            <h2>Start your research</h2>
+            <p>Create a test plan with objectives, tasks, and success criteria.</p>
+            <button class="primary" data-go="plans">Create test plan +</button>
+          </article>
+          <article class="panel">
+            <h2>Testing progress</h2>
+            <div class="progress"><div id="progressBar"></div></div>
+            <p id="progressText" class="muted">No tasks recorded yet.</p>
+          </article>
+        </div>
+
+        <article class="panel">
+          <div class="section-head">
+            <h2>Recent test plans</h2>
+            <button class="secondary" id="sampleBtn">Load demo data</button>
+          </div>
+          <div id="recentPlans" class="empty">No plans yet. Create your first test plan.</div>
+        </article>
+      </section>
+
+      <section id="plans" class="page hidden">
+        <p class="eyebrow">PLAN YOUR RESEARCH</p>
+        <h1>Test Plans & Scenarios</h1>
+        <article class="panel">
+          <h2>Create a test plan</h2>
+          <form id="planForm">
+            <label>Test title<input id="planTitle" required placeholder="e.g. Online Shopping Usability Test"></label>
+            <label>Product being tested<input id="productName" required placeholder="e.g. Online shopping website"></label>
+            <label>Testing objective<textarea id="objective" required placeholder="What do you want to learn?"></textarea></label>
+            <label>Target users<input id="targetUsers" required placeholder="e.g. College students"></label>
+            <label>Testing method
+              <select id="method">
+                <option>Moderated usability testing</option>
+                <option>Unmoderated usability testing</option>
+                <option>Think-aloud testing</option>
+              </select>
+            </label>
+            <label>Test scenario<textarea id="scenario" required placeholder="e.g. Find a product and add it to your cart."></textarea></label>
+            <label>Success criteria<input id="criteria" required placeholder="e.g. Product added to cart successfully"></label>
+            <button class="primary" type="submit">Save test plan</button>
+          </form>
+        </article>
+        <article class="panel">
+          <h2>Saved plans</h2>
+          <div id="allPlans" class="empty">Your saved plans will appear here.</div>
+        </article>
+      </section>
+
+      <section id="sessions" class="page hidden">
+        <p class="eyebrow">USER RESEARCH</p>
+        <h1>Testing Sessions</h1>
+        <article class="panel">
+          <h2>Record a session</h2>
+          <p class="muted">Use a participant ID instead of a person's full name.</p>
+          <form id="sessionForm">
+            <label>Participant ID<input id="participantId" required placeholder="e.g. P01"></label>
+            <label>Test plan<select id="sessionPlan" required></select></label>
+            <label>Task tested<input id="taskName" required placeholder="e.g. Find and select a product"></label>
+            <label>Time taken (seconds)<input id="taskTime" type="number" min="1" required></label>
+            <label>Task result
+              <select id="taskResult">
+                <option value="success">Successful</option>
+                <option value="failure">Unsuccessful</option>
+              </select>
+            </label>
+            <label>Errors encountered<input id="errorCount" type="number" min="0" value="0" required></label>
+            <label>Satisfaction rating
+              <select id="rating">
+                <option value="5">5 - Very satisfied</option>
+                <option value="4">4 - Satisfied</option>
+                <option value="3">3 - Neutral</option>
+                <option value="2">2 - Dissatisfied</option>
+                <option value="1">1 - Very dissatisfied</option>
+              </select>
+            </label>
+            <label>Observation<textarea id="sessionNotes" required placeholder="What did the participant do? Where did they struggle?"></textarea></label>
+            <button class="primary" type="submit">Save testing session</button>
+          </form>
+        </article>
+        <article class="panel">
+          <h2>Recorded sessions</h2>
+          <div id="sessionList" class="empty">No sessions recorded yet.</div>
+        </article>
+      </section>
+
+      <section id="observations" class="page hidden">
+        <p class="eyebrow">WHAT USERS EXPERIENCED</p>
+        <h1>Observations & Feedback</h1>
+        <article class="panel">
+          <h2>Add a usability issue</h2>
+          <form id="observationForm">
+            <label>Participant ID<input id="obsParticipant" required placeholder="e.g. P01"></label>
+            <label>Issue observed<input id="issueTitle" required placeholder="e.g. Checkout button was difficult to find"></label>
+            <label>Severity
+              <select id="severity">
+                <option>Minor</option>
+                <option>Major</option>
+                <option>Critical</option>
+              </select>
+            </label>
+            <label>Evidence / user feedback<textarea id="evidence" required placeholder="Describe the observed behaviour or actual user comment."></textarea></label>
+            <label>Suggested improvement<textarea id="suggestion" required placeholder="How could the design be improved?"></textarea></label>
+            <button class="primary" type="submit">Save observation</button>
+          </form>
+        </article>
+        <article class="panel">
+          <h2>Recorded observations</h2>
+          <div id="observationList" class="empty">No observations yet.</div>
+        </article>
+      </section>
+
+      <section id="analysis" class="page hidden">
+        <p class="eyebrow">MEASURE & IMPROVE</p>
+        <h1>Analysis & Reports</h1>
+        <p class="muted">Metrics are calculated from your recorded sessions.</p>
+        <div class="metrics">
+          <article class="metric"><span>Success rate</span><strong id="reportSuccess">0%</strong></article>
+          <article class="metric"><span>Average task time</span><strong id="averageTime">0 sec</strong></article>
+          <article class="metric"><span>Total errors</span><strong id="totalErrors">0</strong></article>
+          <article class="metric"><span>Average satisfaction</span><strong id="averageRating">0/5</strong></article>
+        </div>
+        <article class="panel">
+          <h2>Task success</h2>
+          <div class="progress"><div id="reportProgress"></div></div>
+          <p id="reportText" class="muted">Record testing sessions to calculate your results.</p>
+        </article>
+        <article class="panel">
+          <h2>Findings & design improvements</h2>
+          <div id="findings" class="empty">Record sessions and observations to build your report.</div>
+        </article>
+        <article class="panel">
+          <h2>Final usability report</h2>
+          <p>Generate a summary of the research, metrics, observations, and improvement recommendations.</p>
+          <button class="primary" id="reportBtn">Generate report</button>
+          <button class="secondary" id="printBtn">Print / Save as PDF</button>
+          <div id="reportOutput"></div>
+        </article>
+      </section>
+
+      <footer>UsabilityLab · Interactive UX research project</footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
